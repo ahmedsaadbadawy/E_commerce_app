@@ -21,7 +21,7 @@ class FastBuy extends StatelessWidget {
       routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
+        colorScheme: const ColorScheme.light(primary: Colors.black),
       ),
     );
   }
