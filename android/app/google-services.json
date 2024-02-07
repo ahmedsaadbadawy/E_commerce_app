@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "864062895552",
+    "project_id": "fast-buy-1f3d4",
+    "storage_bucket": "fast-buy-1f3d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864062895552:android:0ef870b997deb5e8d30425",
+        "android_client_info": {
+          "package_name": "com.example.fast_buy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUAufNFjHPekUrf5UGl183wtoohqSmtvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
