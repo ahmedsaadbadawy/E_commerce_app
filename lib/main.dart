@@ -1,8 +1,8 @@
+import 'package:fast_buy/core/utils/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
-import 'views/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +17,12 @@ class FastBuy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
     );
   }
 }
