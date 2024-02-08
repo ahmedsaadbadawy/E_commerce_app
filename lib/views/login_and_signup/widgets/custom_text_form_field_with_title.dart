@@ -9,11 +9,12 @@ class CustomTextFormFieldWithTitle extends StatelessWidget {
     required this.labelText,
     this.onChanged,
     this.obscureText = false,
+    required this.controller,
   });
   final String labelText;
   final Function(String)? onChanged;
   final bool? obscureText;
-
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,16 +27,14 @@ class CustomTextFormFieldWithTitle extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          child: SizedBox(
-            width: 341,
-            height: 53,
-            child: CustomTextFormField(
-              obscureText: obscureText,
-              onChanged: onChanged,
-              labelText: labelText,
-            ),
+        SizedBox(
+          width: 341,
+          height: 80,
+          child: CustomTextFormField(
+            obscureText: obscureText,
+            onChanged: onChanged,
+            labelText: labelText,
+            controller: controller,
           ),
         ),
       ],

@@ -9,19 +9,27 @@ import '../../constants.dart';
 import '../../core/widgets/custom_button_with_image.dart';
 
 // ignore: must_be_immutable
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
-  String? email;
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
-  String? password;
-  GlobalKey<FormState> formkey = GlobalKey();
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, top: 50),
         child: Form(
+          key: _formkey,
           child: ListView(
             children: [
               const Text(
@@ -33,24 +41,27 @@ class LoginScreen extends StatelessWidget {
                 height: 35,
               ),
               CustomTextFormFieldWithTitle(
+                controller: _emailController,
                 labelText: "Email",
-                onChanged: (data) {
-                  email = data;
-                },
               ),
-              const SizedBox(height: 33),
               CustomTextFormFieldWithTitle(
+                controller: _passwordController,
                 labelText: "Password",
-                onChanged: (data) {
-                  password = data;
-                },
                 obscureText: true,
               ),
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
               CustomButton(
-                onTap: () {},
+                onTap: () {
+                  _formkey.currentState!.validate();
+                  // String email = _emailController.text;
+                  // String passward = _passwordController.text;
+
+                  if (_formkey.currentState!.validate()) {
+                    //print('Done');
+                  }
+                },
                 buttonName: 'Sign In',
               ),
               Row(
@@ -95,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                     'https://seeklogo.com/images/F/facebook-new-2023-logo-4221611926-seeklogo.com.png?v=638313429180000000',
               ),
               const SizedBox(
-                height: 76,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

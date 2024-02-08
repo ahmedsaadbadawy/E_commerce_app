@@ -6,23 +6,33 @@ import '../../core/widgets/custom_button.dart';
 import 'widgets/custom_text_form_field_with_title.dart';
 
 // ignore: must_be_immutable
-class SignupScreen extends StatelessWidget {
-  SignupScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
-  String? email;
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
 
-  String? password;
+class _SignupScreenState extends State<SignupScreen> {
 
-  String? name;
+  final _emailController = TextEditingController();
 
-  String? phone;
+  final _passwordController = TextEditingController();
+
+  final _nameController = TextEditingController();
+
+  final _phoneController = TextEditingController();
+
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 50),
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 50, bottom: 20),
         child: Form(
+          key: _formkey,
           child: ListView(
             children: [
               const Text(
@@ -39,61 +49,39 @@ class SignupScreen extends StatelessWidget {
                 height: 35,
               ),
               CustomTextFormFieldWithTitle(
+                controller: _nameController,
                 labelText: "Full Name",
-                onChanged: (data) {
-                  name = data;
-                },
               ),
-              const SizedBox(height: 33),
               CustomTextFormFieldWithTitle(
+                controller: _emailController,
                 labelText: "Email",
-                onChanged: (data) {
-                  email = data;
-                },
               ),
-              const SizedBox(height: 33),
               CustomTextFormFieldWithTitle(
+                controller: _phoneController,
                 labelText: "Phone",
-                onChanged: (data) {
-                  phone = data;
-                },
               ),
-              const SizedBox(height: 33),
               CustomTextFormFieldWithTitle(
                 labelText: "Password",
-                onChanged: (data) {
-                  password = data;
-                },
                 obscureText: true,
+                controller: _passwordController,
               ),
               const SizedBox(
-                height: 40,
+                height: 25,
               ),
               CustomButton(
-                onTap: () {},
-                buttonName: 'Let\'s Get Started',
+                onTap: () {
+                  _formkey.currentState!.validate();
+                  // String email = _emailController.text;
+                  // String passward = _passwordController.text;
+                  // String phone = _phoneController.text;
+                  // String name = _nameController.text;
+
+                  if (_formkey.currentState!.validate()) {
+                    GoRouter.of(context).pop();
+                  }
+                },
+                buttonName: 'Log In',
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Already a member? ',
-                    style: TextStyle(color: khintColor),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).pop();
-                    },
-                    child: Text(
-                      'Log In',
-                      style: Styles.styleSemiBold32.copyWith(fontSize: 16),
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
         ),
