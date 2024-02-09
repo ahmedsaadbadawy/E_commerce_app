@@ -29,6 +29,16 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formkey = GlobalKey<FormState>();
 
   bool isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _nameController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
@@ -94,8 +104,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     String name = _nameController.text;
 
                     if (_formkey.currentState!.validate()) {
-                      BlocProvider.of<AuthCubit>(context)
-                          .registerUser(email: email, password: password,name: name);
+                      BlocProvider.of<AuthCubit>(context).registerUser(
+                          email: email, password: password, name: name);
                       GoRouter.of(context)
                           .pushReplacement(AppRouter.kSigninScreen);
                     }
