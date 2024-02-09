@@ -91,11 +91,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     String email = _emailController.text;
                     String password = _passwordController.text;
                     // String phone = _phoneController.text;
-                    // String name = _nameController.text;
+                    String name = _nameController.text;
 
                     if (_formkey.currentState!.validate()) {
                       BlocProvider.of<AuthCubit>(context)
-                          .registerUser(email: email, password: password);
+                          .registerUser(email: email, password: password,name: name);
                       GoRouter.of(context)
                           .pushReplacement(AppRouter.kSigninScreen);
                     }

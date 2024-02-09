@@ -9,7 +9,6 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> loginUser(
       {required String email, required String password}) async {
     emit(LoginLoading());
-    //UserCredential user =
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -20,15 +19,30 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> registerUser(
-      {required String email, required String password}) async {
+      {required String email, required String password,required String name}) async {
     emit(RegisterLoading());
-    //UserCredential user =
     try {
-      await FirebaseAuth.instance
+       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      
+      await userCredential.user!.updateDisplayName(name);
       emit(RegisterSuccess());
     } catch (e) {
       emit(RegisterFailure());
     }
   }
+
+  Future<String> getUserId() async {
+    return FirebaseAuth.instance.currentUser!.uid;
+  }
+
+  String getUserName(String name) {
+    return FirebaseAuth.instance.currentUser!.displayName!;
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+
 }
