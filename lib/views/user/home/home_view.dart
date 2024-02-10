@@ -1,51 +1,60 @@
-import 'package:fast_buy/core/widgets/product_item.dart';
+import 'package:fast_buy/views/user/cart/cart_view.dart';
+import 'package:fast_buy/views/user/favourites/favourites_view.dart';
+import 'package:fast_buy/views/user/profile/profile_view.dart';
 import 'package:flutter/material.dart';
-import '../../../core/widgets/categories_list_view.dart';
-import 'widgets/app_bar_section.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../core/widgets/home_view_body.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int index = 0;
+  final screens = const [
+    HomeViewBody(),
+    FavouritesView(),
+    CartView(),
+    ProfileView(),
+  ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppBarSection(),
-                SizedBox(
-                  height: 16,
-                ),
-                CategoriesListView(),
-                SizedBox(
-                  height: 24,
-                ),
-              ],
-            ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined, size: 32),
+            label: 'Home',
+            activeIcon: Icon(Icons.home, size: 32),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                childAspectRatio: 161 / 223,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return const Center(
-                    child: ProductItem(),
-                  );
-                },
-                childCount: 20,
-              ),
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.heart),
+            label: 'Favourites',
+            activeIcon: Icon(FontAwesomeIcons.solidHeart),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag_outlined, size: 32),
+            label: 'Cart',
+            activeIcon: Icon(Icons.shopping_bag, size: 32),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline, size: 32),
+            label: 'Profile',
+            activeIcon: Icon(Icons.person, size: 32),
           ),
         ],
+        unselectedItemColor: Colors.grey[600],
+        selectedItemColor: Colors.black,
+        currentIndex: index,
+        onTap: (value) {
+          index = value;
+          setState(() {});
+        },
       ),
+      body: screens[index],
     );
   }
 }
