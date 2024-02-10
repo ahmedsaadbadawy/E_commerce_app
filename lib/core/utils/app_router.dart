@@ -1,3 +1,4 @@
+import 'package:fast_buy/views/admin/home/admin_home_view.dart';
 import 'package:fast_buy/views/login_and_signup/login_screen.dart';
 import 'package:fast_buy/views/login_and_signup/manager/auth_cubit/auth_cubit.dart';
 import 'package:fast_buy/views/login_and_signup/signup_screen.dart';
@@ -10,6 +11,7 @@ abstract class AppRouter {
   static const kSigninScreen = '/SigninScreen';
   static const kSignupScreen = '/SignupScreen';
   static const kHomeView = '/HomeView';
+  static const kAdminHomeView = '/AdminHomeView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -33,6 +35,10 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: kAdminHomeView,
+        builder: (context, state) => const AdminHomeView(),
       ),
     ],
   );

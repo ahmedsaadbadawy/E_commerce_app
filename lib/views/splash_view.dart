@@ -25,12 +25,19 @@ class SplashView extends StatelessWidget {
 
   void navigateToHome(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final isLoggedIn = prefs.getBool(kKeepMeLoggedIn) ?? false;
+    bool isLoggedIn = prefs.getBool(kKeepMeLoggedIn) ?? false;
+    bool isAdmin = prefs.getBool(kIsAdmin) ?? false;
+
     Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 4),
       () {
-        GoRouter.of(context)
-            .push(isLoggedIn ? AppRouter.kHomeView : AppRouter.kSigninScreen);
+        if (isAdmin) {
+          GoRouter.of(context).push(
+              isLoggedIn ? AppRouter.kAdminHomeView : AppRouter.kSigninScreen);
+        } else {
+          GoRouter.of(context)
+              .push(isLoggedIn ? AppRouter.kHomeView : AppRouter.kSigninScreen);
+        }
       },
     );
   }

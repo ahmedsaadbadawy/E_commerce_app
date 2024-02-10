@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../constants.dart';
 import '../../core/widgets/custom_button_with_image.dart';
 import '../../core/widgets/show_snack_bar.dart';
@@ -36,6 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  String admin = 'admin22';
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
@@ -45,7 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
         } else if (state is LoginSuccess) {
           isLoading = false;
           showSnackBar(context, 'Done!');
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+          GoRouter.of(context).pushReplacement(_passwordController.text == admin
+              ? AppRouter.kAdminHomeView
+              : AppRouter.kHomeView);
         } else if (state is LoginFailure) {
           isLoading = false;
           showSnackBar(context, 'there were error in logging in');
@@ -89,9 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (_formkey.currentState!.validate()) {
                         BlocProvider.of<AuthCubit>(context)
                             .loginUser(email: email, password: password);
-                        SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        prefs.setBool(kKeepMeLoggedIn, true);
                       }
                     },
                     buttonName: 'Sign In',

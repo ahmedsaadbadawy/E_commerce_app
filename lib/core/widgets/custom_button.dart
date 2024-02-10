@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: buttonColor ?? Colors.black,
           borderRadius: BorderRadius.circular(8),
         ),
         width: double.infinity,
@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
           child: Text(
             buttonName,
             style: Styles.styleMedium16.copyWith(
-              color: textColor,
+              color: textColor ?? Colors.white,
             ),
           ),
         ),
