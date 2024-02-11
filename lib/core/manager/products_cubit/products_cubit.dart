@@ -21,6 +21,7 @@ class ProductCubit extends Cubit<ProductsState> {
       kProductCreatedAt: DateTime.now(),
       kProductReviewersNum: product.reviewersNum,
       kProductReviewsSum: product.reviewsSum,
+      kProductImageUrl: product.pimageUrl,
     });
   }
 
@@ -42,8 +43,9 @@ class ProductCubit extends Cubit<ProductsState> {
           pCategory: doc[kProductCategory],
           pQuantity: doc[kProductQuantity],
           pPrice: doc[kProductPrice],
-          reviewersNum: doc[kProductReviewersNum],
-          reviewsSum: doc[kProductReviewsSum],
+          pimageUrl: doc[kProductImageUrl],
+          reviewersNum: doc[kProductReviewersNum]?? 0,
+          reviewsSum: doc[kProductReviewsSum]?? 0,
           pRef: doc.reference,
         ));
       }

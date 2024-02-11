@@ -5,6 +5,7 @@ class Product {
   final double pPrice;
   final String pDescription;
   final String pCategory;
+  final String pimageUrl;
   final int pQuantity;
   final int reviewersNum;
   final int reviewsSum;
@@ -20,5 +21,6 @@ class Product {
     required this.reviewersNum,
     required this.reviewsSum,
     required this.pRef,
+    required this.pimageUrl,
   });
 }
