@@ -1,3 +1,4 @@
+import 'package:fast_buy/models/product.dart';
 import 'package:fast_buy/views/admin/home/admin_home_view.dart';
 import 'package:fast_buy/views/login_and_signup/login_screen.dart';
 import 'package:fast_buy/views/login_and_signup/manager/auth_cubit/auth_cubit.dart';
@@ -7,11 +8,14 @@ import 'package:fast_buy/views/user/home/home_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../views/details_view/details_view.dart';
+
 abstract class AppRouter {
   static const kSigninScreen = '/SigninScreen';
   static const kSignupScreen = '/SignupScreen';
   static const kHomeView = '/HomeView';
   static const kAdminHomeView = '/AdminHomeView';
+  static const kDetailsView = '/DetailsView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -39,6 +43,12 @@ abstract class AppRouter {
       GoRoute(
         path: kAdminHomeView,
         builder: (context, state) => const AdminHomeView(),
+      ),
+      GoRoute(
+        path: kDetailsView,
+        builder: (context, state) =>  DetailsView(
+          product: state.extra as Product,
+        ),
       ),
     ],
   );
