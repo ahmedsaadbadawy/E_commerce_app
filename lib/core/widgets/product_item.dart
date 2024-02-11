@@ -1,11 +1,14 @@
 import 'package:fast_buy/core/utils/styles.dart';
+import 'package:fast_buy/models/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
     super.key,
+    required this.product,
   });
 
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,7 +32,7 @@ class ProductItem extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
-                'https://img.freepik.com/free-psd/isolated-white-t-shirt-front-view_125540-1194.jpg?w=900&t=st=1707509228~exp=1707509828~hmac=335d75dc7f72299427a19c5824176064087a1bff4f97c205debcc7bbb0c452bb',
+                product.pimageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -38,11 +41,12 @@ class ProductItem extends StatelessWidget {
             height: 8,
           ),
           Text(
-            "Product name",
+            product.pName,
             style: Styles.styleSemiBold32.copyWith(fontSize: 16),
+            overflow: TextOverflow.ellipsis,
           ),
           Text(
-            "EG 1200 - 52%",
+            "EG ${product.pPrice}",
             style: Styles.styleMedium16.copyWith(
               fontSize: 12.2,
               color: Colors.grey,

@@ -1,5 +1,8 @@
+import 'package:fast_buy/core/manager/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/categories.dart';
 import '../../views/user/home/widgets/category_item.dart';
 
 class CategoriesListView extends StatefulWidget {
@@ -13,13 +16,6 @@ class CategoriesListView extends StatefulWidget {
 
 class _CategoriesListViewState extends State<CategoriesListView> {
   int activeIndex = 0;
-  List<String> categories = [
-    'New Arrivals',
-    'Clothes',
-    'Bags',
-    'Soese',
-    'Electronics'
-  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,6 +34,8 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                     if (activeIndex != index) {
                       activeIndex = index;
                     }
+                    BlocProvider.of<ProductCubit>(context)
+                        .getProducts(categories[index]);
                   });
                 },
                 child: CategoryItem(
