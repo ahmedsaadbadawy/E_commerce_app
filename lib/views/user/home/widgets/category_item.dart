@@ -7,8 +7,10 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem({
     super.key,
     this.isActive = false,
+    required this.title,
   });
   final bool isActive;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +20,7 @@ class CategoryItem extends StatelessWidget {
         color: isActive ? Colors.black : kGrayColor,
       ),
       child: Text(
-        'All',
+        title,
         style: Styles.styleMedium16
             .copyWith(color: isActive ? Colors.white : Colors.black),
       ),

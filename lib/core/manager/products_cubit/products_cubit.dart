@@ -11,19 +11,6 @@ class ProductCubit extends Cubit<ProductsState> {
   ProductCubit() : super(ProductsInitial());
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  addProduct(Product product) {
-    firestore.collection(kProductsCollection).add({
-      kProductName: product.pName,
-      kProductDescription: product.pDescription,
-      kProductCategory: product.pCategory,
-      kProductQuantity: product.pQuantity,
-      kProductPrice: product.pPrice,
-      kProductCreatedAt: DateTime.now(),
-      kProductReviewersNum: product.reviewersNum,
-      kProductReviewsSum: product.reviewsSum,
-      kProductImageUrl: product.pimageUrl,
-    });
-  }
 
   CollectionReference products =
       FirebaseFirestore.instance.collection(kProductsCollection);
@@ -36,6 +23,7 @@ class ProductCubit extends Cubit<ProductsState> {
         .snapshots()
         .listen((event) {
       productsList.clear();
+
       for (var doc in event.docs) {
         productsList.add(Product(
           pName: doc[kProductName],
@@ -44,8 +32,8 @@ class ProductCubit extends Cubit<ProductsState> {
           pQuantity: doc[kProductQuantity],
           pPrice: doc[kProductPrice],
           pimageUrl: doc[kProductImageUrl],
-          reviewersNum: doc[kProductReviewersNum]?? 0,
-          reviewsSum: doc[kProductReviewsSum]?? 0,
+          reviewersNum: doc[kProductReviewersNum] ?? 0,
+          reviewsSum: doc[kProductReviewsSum] ?? 0,
           pRef: doc.reference,
         ));
       }

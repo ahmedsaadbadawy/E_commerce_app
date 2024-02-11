@@ -7,10 +7,10 @@ class Product {
   final String pCategory;
   final String pimageUrl;
   final int pQuantity;
-  final int reviewersNum;
-  final int reviewsSum;
+  final int? reviewersNum;
+  final int? reviewsSum;
   // final alovelaceDocumentRef = db.collection("users").doc("alovelace");
-  final DocumentReference pRef;
+  final DocumentReference? pRef;
 
   Product({
     required this.pName,
@@ -18,9 +18,9 @@ class Product {
     required this.pDescription,
     required this.pCategory,
     required this.pQuantity,
-    required this.reviewersNum,
-    required this.reviewsSum,
-    required this.pRef,
+    this.reviewersNum,
+    this.reviewsSum,
+    this.pRef,
     required this.pimageUrl,
   });
 }

@@ -14,7 +14,7 @@ class CustomTextFormFieldWithTitle extends StatelessWidget {
   final String labelText;
   final Function(String)? onChanged;
   final bool? obscureText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -13,7 +13,13 @@ class CategoriesListView extends StatefulWidget {
 
 class _CategoriesListViewState extends State<CategoriesListView> {
   int activeIndex = 0;
-
+  List<String> categories = [
+    'New Arrivals',
+    'Clothes',
+    'Bags',
+    'Soese',
+    'Electronics'
+  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +27,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
       child: SizedBox(
         height: 36,
         child: ListView.builder(
-          itemCount: 7,
+          itemCount: categories.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Padding(
@@ -35,6 +41,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                   });
                 },
                 child: CategoryItem(
+                  title: categories[index],
                   isActive: activeIndex == index,
                 ),
               ),
