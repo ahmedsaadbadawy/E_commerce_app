@@ -4,6 +4,8 @@ import 'package:fast_buy/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'custom_image.dart';
+
 class ProductItem extends StatelessWidget {
   const ProductItem({
     super.key,
@@ -20,27 +22,7 @@ class ProductItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 174,
-            width: 161,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 40,
-                  color: Colors.grey.withOpacity(0.1),
-                  spreadRadius: 0,
-                  offset: const Offset(10, 10),
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                product.pimageUrl,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          CustomImage(product: product),
           const SizedBox(
             height: 8,
           ),

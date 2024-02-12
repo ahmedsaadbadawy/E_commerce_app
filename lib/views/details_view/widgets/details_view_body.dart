@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/utils/styles.dart';
 import '../../../models/product.dart';
+import 'custom_details_view_app_bar.dart';
 
-class DetailsViewBody extends StatefulWidget {
+class DetailsViewBody extends StatelessWidget {
   const DetailsViewBody({
     super.key,
     required this.product,
@@ -13,13 +13,6 @@ class DetailsViewBody extends StatefulWidget {
   final Product product;
 
   @override
-  State<DetailsViewBody> createState() => _DetailsViewBodyState();
-}
-
-bool _isFav = false;
-
-class _DetailsViewBodyState extends State<DetailsViewBody> {
-  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
@@ -27,35 +20,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back),
-                ),
-                const Text('Details', style: Styles.styleSemiBold32),
-                IconButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    fixedSize: const Size(50, 50),
-                  ),
-                  icon: Icon(
-                    _isFav
-                        ? FontAwesomeIcons.solidHeart
-                        : FontAwesomeIcons.heart,
-                    color: Colors.black,
-                    size: 28,
-                  ),
-                  onPressed: () {
-                    _isFav = !_isFav;
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
+            const CustomDetailsViewAppBar(),
             const SizedBox(
               height: 10,
             ),
@@ -64,7 +29,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
-                  widget.product.pimageUrl,
+                  product.pimageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -73,7 +38,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
               height: 10,
             ),
             Text(
-              widget.product.pName,
+              product.pName,
               style: Styles.styleSemiBold32.copyWith(fontSize: 24),
             ),
             Row(
@@ -84,11 +49,11 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
                 ),
                 // (4321.12345678).toStringAsFixed(3);  // 4321.123.
                 Text(
-                  '${(widget.product.reviewsSum! / widget.product.reviewersNum!).toStringAsFixed(1)}/5',
+                  '${(product.reviewsSum! / product.reviewersNum!).toStringAsFixed(1)}/5',
                   style: Styles.styleMedium16,
                 ),
                 Text(
-                  ' (${widget.product.reviewersNum} reviews)',
+                  ' (${product.reviewersNum} reviews)',
                   style: Styles.styleMedium16.copyWith(color: Colors.grey[600]),
                 ),
               ],
@@ -97,7 +62,7 @@ class _DetailsViewBodyState extends State<DetailsViewBody> {
               height: 15,
             ),
             Text(
-              widget.product.pDescription,
+              product.pDescription,
               style: Styles.styleRegular16.copyWith(color: Colors.grey[600]),
             ),
             const SizedBox(

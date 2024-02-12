@@ -5,6 +5,7 @@ const Color kGrayColor = Color(0xffF2F2F2);
 const String kKeepMeLoggedIn = 'KeepMeLoggedIn';
 const String admin = 'admin22';
 const String kIsAdmin = 'IsAdmin';
+bool isAdmin = false;
 const String kProductsCollection = 'products';
 String kProductCreatedAt = 'createdAt';
 const String kProductDescription = 'description';

@@ -6,11 +6,13 @@ import '../../../models/product.dart';
 class CustomButtomListTile extends StatelessWidget {
   const CustomButtomListTile({
     super.key,
-    required this.product,
+    required this.product, required this.title, this.onPressed, required this.icon,
   });
 
   final Product product;
-
+  final String title;
+  final VoidCallback? onPressed;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -27,8 +29,7 @@ class CustomButtomListTile extends StatelessWidget {
             contentPadding: const EdgeInsets.all(0),
             title: Text(
               'Price',
-              style:
-                  Styles.styleMedium16.copyWith(color: Colors.grey[600]),
+              style: Styles.styleMedium16.copyWith(color: Colors.grey[600]),
             ),
             subtitle: Text(
               'EG ${product.pPrice}',
@@ -43,10 +44,10 @@ class CustomButtomListTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              icon: const Icon(Icons.shopping_bag_outlined),
-              onPressed: () {},
+              icon: Icon(icon),
+              onPressed: onPressed,
               label: Text(
-                'Add to Cart',
+                title,
                 style: Styles.styleMedium16.copyWith(color: Colors.white),
               ),
             ),
