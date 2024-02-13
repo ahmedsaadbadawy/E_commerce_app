@@ -1,6 +1,5 @@
 import 'package:fast_buy/core/manager/products_cubit/products_cubit.dart';
 import 'package:fast_buy/core/utils/app_router.dart';
-import 'package:fast_buy/models/categories.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +20,7 @@ class FastBuy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductCubit()..getProducts(categories[0]),
+      create: (context) => ProductCubit(),
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
