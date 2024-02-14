@@ -1,4 +1,4 @@
-import 'package:fast_buy/core/utils/services/admin_store.dart';
+import 'package:fast_buy/core/utils/services/store.dart';
 import 'package:fast_buy/core/widgets/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +80,7 @@ class _AddProductViewState extends State<AddProductView> {
             CustomButton(
               onTap: () {
                 try {
-                  AdminStore().addProduct(
+                  Store().addProduct(
                     Product(
                       pName: pName,
                       pDescription: pDescription,

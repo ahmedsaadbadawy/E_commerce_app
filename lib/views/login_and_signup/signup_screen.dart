@@ -1,8 +1,11 @@
+import 'package:fast_buy/core/utils/services/auth.dart';
+import 'package:fast_buy/models/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../constants.dart';
 import '../../core/utils/app_router.dart';
+import '../../core/utils/services/store.dart';
 import '../../core/utils/styles.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/show_snack_bar.dart';
@@ -47,8 +50,16 @@ class _SignupScreenState extends State<SignupScreen> {
           isLoading = true;
         } else if (state is RegisterSuccess) {
           isLoading = false;
+          Store().addUserInfo(
+            UserInfo(
+              uName: _nameController.text,
+              uPhone: _phoneController.text,
+              uAddress: null,
+            ),
+            Auth.getUserId(),
+          );
           showSnackBar(context, 'Done!');
-          // GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+          GoRouter.of(context).pushReplacement(AppRouter.kSigninScreen);
         } else if (state is RegisterFailure) {
           isLoading = false;
           showSnackBar(context, 'there were error in signing in');
@@ -106,8 +117,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (_formkey.currentState!.validate()) {
                       BlocProvider.of<AuthCubit>(context).registerUser(
                           email: email, password: password, name: name);
-                      GoRouter.of(context)
-                          .pushReplacement(AppRouter.kSigninScreen);
                     }
                   },
                   buttonName: 'Log In',

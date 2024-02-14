@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth {
-  static Future<String> getUserId() async {
+  static String getUserId() {
     return FirebaseAuth.instance.currentUser!.uid;
   }
 
-  static String getUserName(String name) {
+  static String getUserName() {
     return FirebaseAuth.instance.currentUser!.displayName!;
   }
 

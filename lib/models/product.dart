@@ -9,7 +9,9 @@ class Product {
   final int pQuantity;
   final int? reviewersNum;
   final int? reviewsSum;
-  // final alovelaceDocumentRef = db.collection("users").doc("alovelace");
+  // final pRef = db.collection("products").doc("xxxxx");
+  // var doc = await pRef?.snapshots().first;
+  //print(doc?[kProductName]);
   final DocumentReference? pRef;
 
   Product({

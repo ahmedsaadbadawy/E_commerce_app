@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../constants.dart';
 import '../../../models/product.dart';
+import '../../../models/user_info.dart';
 
-class AdminStore {
-  
+class Store {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   addProduct(Product product) {
     firestore.collection(kProductsCollection).add({
@@ -14,9 +13,17 @@ class AdminStore {
       kProductQuantity: product.pQuantity,
       kProductPrice: product.pPrice,
       kProductCreatedAt: DateTime.now(),
-      kProductReviewersNum: product.reviewersNum?? 0,
-      kProductReviewsSum: product.reviewsSum?? 0,
+      kProductReviewersNum: product.reviewersNum ?? 0,
+      kProductReviewsSum: product.reviewsSum ?? 0,
       kProductImageUrl: product.pimageUrl,
+    });
+  }
+
+  void addUserInfo(UserInfo userInfo, String uid) {
+    firestore.collection(kUsersCollection).doc(uid).set({
+      kUserName: userInfo.uName,
+      kUserPhone: userInfo.uPhone,
+      kUserAddress: userInfo.uAddress,
     });
   }
 }

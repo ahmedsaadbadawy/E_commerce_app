@@ -16,3 +16,7 @@ const String kProductQuantity = 'quantity';
 const String kProductReviewersNum = 'reviewersNum';
 const String kProductReviewsSum = 'reviewsSum';
 const String kProductImageUrl = 'imageUrl';
+const String kUsersCollection = 'users';
+const String kUserName = 'name';
+const String kUserPhone = 'phone';
+const String kUserAddress = 'address';
