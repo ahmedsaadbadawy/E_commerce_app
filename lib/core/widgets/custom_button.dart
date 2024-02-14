@@ -8,10 +8,12 @@ class CustomButton extends StatelessWidget {
     required this.buttonName,
     this.textColor = Colors.white,
     this.buttonColor = Colors.black,
+    this.height = 60,
   });
 
   final VoidCallback onTap;
   final String buttonName;
+  final int? height;
   final Color? textColor;
   final Color? buttonColor;
   @override

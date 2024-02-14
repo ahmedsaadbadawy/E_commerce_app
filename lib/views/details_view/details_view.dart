@@ -26,7 +26,8 @@ class DetailsView extends StatelessWidget {
                   title: 'Add to Cart',
                   icon: Icons.shopping_bag_outlined,
                   onPressed: () {
-                    cartList.add({'product': product,'quantity':1});
+                    total += product.pPrice;
+                    cartList.add({'product': product, 'quantity': 1});
                   },
                 ),
         ],

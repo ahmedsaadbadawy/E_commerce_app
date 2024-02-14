@@ -86,6 +86,7 @@ class _CartItemState extends State<CartItem> {
                           iconSize: 24,
                           padding: const EdgeInsets.only(bottom: 12),
                           onPressed: () {
+                            total -= widget.product.pPrice;
                             _quantity--;
                             setState(() => cartList[widget.pIndex]
                                 .update('quantity', (value) => _quantity));
@@ -100,6 +101,7 @@ class _CartItemState extends State<CartItem> {
                               icon: const Icon(Icons.add),
                               iconSize: 24,
                               onPressed: () {
+                                total += widget.product.pPrice;
                                 _quantity++;
                                 setState(() => cartList[widget.pIndex]
                                     .update('quantity', (value) => _quantity));
