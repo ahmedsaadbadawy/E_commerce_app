@@ -1,11 +1,11 @@
 import 'package:fast_buy/core/utils/styles.dart';
 import 'package:fast_buy/core/widgets/custom_app_bar.dart';
+import 'package:fast_buy/views/user/cart/widgets/checkout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'manager/cart_cubit/cart_cubit.dart';
 import 'widgets/cart_list_view_builder.dart';
-import 'widgets/checkout_button.dart';
 import 'widgets/custom_text_row.dart';
 
 class CartView extends StatefulWidget {
@@ -24,18 +24,18 @@ class _CartViewState extends State<CartView> {
     return Builder(
       builder: (context) => BlocProvider(
         create: (context) => CartCubit(),
-        child: Scaffold(
-          body: cartList.isEmpty
-              ? const Center(
-                  child: Text('Your shopping cart is empty',
-                      style: TextStyle(fontSize: 23)),
-                )
-              : BlocConsumer<CartCubit, CartState>(
-                  listener: (context, state) {
-                    // TODO: implement listener
-                  },
-                  builder: (context, state) {
-                    return SingleChildScrollView(
+        child: BlocConsumer<CartCubit, CartState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+          builder: (context, state) {
+            return Scaffold(
+              body: cartList.isEmpty
+                  ? const Center(
+                      child: Text('Your shopping cart is empty',
+                          style: TextStyle(fontSize: 23)),
+                    )
+                  : SingleChildScrollView(
                       child: Column(
                         children: [
                           Padding(
@@ -66,9 +66,10 @@ class _CartViewState extends State<CartView> {
                                 const SizedBox(
                                   height: 15,
                                 ),
-                                 CustomTextRow(
+                                CustomTextRow(
                                   txt1: 'VAT (%)',
-                                  txt2: 'EG ${(total*0.14).toStringAsFixed(2)}',
+                                  txt2:
+                                      'EG ${(total * 0.14).toStringAsFixed(2)}',
                                 ),
                                 const SizedBox(
                                   height: 15,
@@ -92,7 +93,7 @@ class _CartViewState extends State<CartView> {
                                       style: Styles.styleRegular16,
                                     ),
                                     Text(
-                                        'EG ${(total + 80).toStringAsFixed(2)}',
+                                        'EG ${(total + 80 + (total * 0.14)).toStringAsFixed(2)}',
                                         style: Styles.styleMedium16),
                                   ],
                                 )
@@ -109,9 +110,9 @@ class _CartViewState extends State<CartView> {
                           ),
                         ],
                       ),
-                    );
-                  },
-                ),
+                    ),
+            );
+          },
         ),
       ),
     );

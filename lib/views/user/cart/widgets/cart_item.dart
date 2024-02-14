@@ -7,7 +7,7 @@ import '../../../../core/widgets/custom_image.dart';
 import '../../../../models/product.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 
-class CartItem extends StatefulWidget {
+class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
     required this.product,
@@ -17,15 +17,11 @@ class CartItem extends StatefulWidget {
   final Product product;
   final int pIndex;
   final int quantity;
-  @override
-  State<CartItem> createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
-  int _quantity = 1;
 
   @override
   Widget build(BuildContext context) {
+    int quantity = 1;
+
     return Card(
       color: const Color.fromARGB(255, 255, 255, 255).withOpacity(1),
       child: Padding(
@@ -35,7 +31,7 @@ class _CartItemState extends State<CartItem> {
             FittedBox(
               fit: BoxFit.scaleDown,
               child: CustomImage(
-                product: widget.product,
+                product: product,
               ),
             ),
             const SizedBox(
@@ -46,7 +42,7 @@ class _CartItemState extends State<CartItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.product.pName,
+                    product.pName,
                     style: Styles.styleSemiBold32.copyWith(fontSize: 16),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -62,11 +58,11 @@ class _CartItemState extends State<CartItem> {
                         size: 16,
                       ),
                       Text(
-                        '${(widget.product.reviewsSum! / widget.product.reviewersNum!).toStringAsFixed(1)}/5',
+                        '${(product.reviewsSum! / product.reviewersNum!).toStringAsFixed(1)}/5',
                         style: Styles.styleRegular16.copyWith(fontSize: 12),
                       ),
                       Text(
-                        ' (${widget.product.reviewersNum} reviews)',
+                        ' (${product.reviewersNum} reviews)',
                         style: Styles.styleRegular16.copyWith(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -75,47 +71,56 @@ class _CartItemState extends State<CartItem> {
                     ],
                   ),
                   const Spacer(),
-                  Row(
-                    children: [
-                      Text(
-                        'EG ${widget.product.pPrice}',
-                        style: Styles.styleSemiBold32.copyWith(fontSize: 14),
-                      ),
-                      const Spacer(),
-                      if (_quantity > 1)
-                        IconButton(
-                          icon: const Icon(Icons.minimize),
-                          iconSize: 24,
-                          padding: const EdgeInsets.only(bottom: 12),
-                          onPressed: () {
-                            total -= widget.product.pPrice;
-                            BlocProvider.of<CartCubit>(context).updatePrice();
-                            _quantity--;
-                            setState(() => cartList[widget.pIndex]
-                                .update('quantity', (value) => _quantity));
-                          },
-                        ),
-                      Text(
-                        '$_quantity',
-                        style: Styles.styleSemiBold32.copyWith(fontSize: 14),
-                      ),
-                      _quantity <= widget.product.pQuantity
-                          ? IconButton(
-                              icon: const Icon(Icons.add),
+                  BlocBuilder<CartCubit, CartState>(
+                    builder: (context, state) {
+                      return Row(
+                        children: [
+                          Text(
+                            'EG ${product.pPrice}',
+                            style:
+                                Styles.styleSemiBold32.copyWith(fontSize: 14),
+                          ),
+                          const Spacer(),
+                          if (quantity > 1)
+                            IconButton(
+                              icon: const Icon(Icons.minimize),
                               iconSize: 24,
+                              padding: const EdgeInsets.only(bottom: 12),
                               onPressed: () {
-                                total += widget.product.pPrice;
+                                total -= product.pPrice;
+
+                                quantity--;
+                                cartList[pIndex]
+                                    .update('quantity', (value) => quantity);
                                 BlocProvider.of<CartCubit>(context)
-                                    .updatePrice();
-                                _quantity++;
-                                setState(() => cartList[widget.pIndex]
-                                    .update('quantity', (value) => _quantity));
+                                    .cartUpdate();
                               },
-                            )
-                          : const SizedBox(
-                              width: 24,
                             ),
-                    ],
+                          Text(
+                            '$quantity',
+                            style:
+                                Styles.styleSemiBold32.copyWith(fontSize: 14),
+                          ),
+                          quantity <= product.pQuantity
+                              ? IconButton(
+                                  icon: const Icon(Icons.add),
+                                  iconSize: 24,
+                                  onPressed: () {
+                                    total += product.pPrice;
+
+                                    quantity++;
+                                    cartList[pIndex].update(
+                                        'quantity', (value) => quantity);
+                                    BlocProvider.of<CartCubit>(context)
+                                        .cartUpdate();
+                                  },
+                                )
+                              : const SizedBox(
+                                  width: 24,
+                                ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),

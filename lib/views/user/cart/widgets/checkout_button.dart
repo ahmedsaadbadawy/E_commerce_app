@@ -1,12 +1,8 @@
-import 'package:fast_buy/views/user/cart/cart_view.dart';
 import 'package:fast_buy/views/user/cart/manager/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../constants.dart';
-import '../../../../core/utils/services/store.dart';
 import '../../../../core/utils/styles.dart';
-import '../../../../models/product.dart';
+import '../../../../core/widgets/show_snack_bar.dart';
 
 class CheckoutButton extends StatelessWidget {
   const CheckoutButton({
@@ -26,15 +22,12 @@ class CheckoutButton extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
           onPressed: () {
-            for (var map in cartList) {
-              Product product = map['product'];
-              product.pQuantity = map[kProductQuantity];
-              product.pPrice = map[kProductQuantity] * product.pPrice;
-              Store().addOrder(product: product);
+            try {
+              BlocProvider.of<CartCubit>(context).addOrder();
+              showSnackBar(context, 'Your Order Added Successfully');
+            } catch (e) {
+              showSnackBar(context, 'There were error');
             }
-            total = 0;
-            cartList.clear();
-            BlocProvider.of<CartCubit>(context).updatePrice();
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
