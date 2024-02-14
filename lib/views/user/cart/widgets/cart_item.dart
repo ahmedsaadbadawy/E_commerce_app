@@ -1,9 +1,11 @@
 import 'package:fast_buy/views/user/cart/cart_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/custom_image.dart';
 import '../../../../models/product.dart';
+import '../manager/cart_cubit/cart_cubit.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({
@@ -87,6 +89,7 @@ class _CartItemState extends State<CartItem> {
                           padding: const EdgeInsets.only(bottom: 12),
                           onPressed: () {
                             total -= widget.product.pPrice;
+                            BlocProvider.of<CartCubit>(context).updatePrice();
                             _quantity--;
                             setState(() => cartList[widget.pIndex]
                                 .update('quantity', (value) => _quantity));
@@ -102,6 +105,8 @@ class _CartItemState extends State<CartItem> {
                               iconSize: 24,
                               onPressed: () {
                                 total += widget.product.pPrice;
+                                BlocProvider.of<CartCubit>(context)
+                                    .updatePrice();
                                 _quantity++;
                                 setState(() => cartList[widget.pIndex]
                                     .update('quantity', (value) => _quantity));
