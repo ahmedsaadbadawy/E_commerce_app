@@ -1,6 +1,12 @@
+import 'package:fast_buy/views/user/cart/cart_view.dart';
+import 'package:fast_buy/views/user/cart/manager/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../constants.dart';
+import '../../../../core/utils/services/store.dart';
 import '../../../../core/utils/styles.dart';
+import '../../../../models/product.dart';
 
 class CheckoutButton extends StatelessWidget {
   const CheckoutButton({
@@ -16,17 +22,26 @@ class CheckoutButton extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
-          onPressed: () {},
+          onPressed: () {
+            for (var map in cartList) {
+              Product product = map['product'];
+              product.pQuantity = map[kProductQuantity];
+              product.pPrice = map[kProductQuantity] * product.pPrice;
+              Store().addOrder(product: product);
+            }
+            total = 0;
+            cartList.clear();
+            BlocProvider.of<CartCubit>(context).updatePrice();
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Checkout',
-                style:
-                    Styles.styleMedium16.copyWith(color: Colors.white),
+                style: Styles.styleMedium16.copyWith(color: Colors.white),
               ),
               const SizedBox(
                 width: 5,

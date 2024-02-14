@@ -8,4 +8,5 @@ class CartCubit extends Cubit<CartState> {
   void updatePrice() {
     emit(UpdatePriceSuccess());
   }
+  
 }

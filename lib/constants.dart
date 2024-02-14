@@ -20,3 +20,4 @@ const String kUsersCollection = 'users';
 const String kUserName = 'name';
 const String kUserPhone = 'phone';
 const String kUserAddress = 'address';
+const String kOrdersCollection = 'orders';

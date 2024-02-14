@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Product {
   final String pName;
-  final double pPrice;
+  double pPrice;
   final String pDescription;
   final String pCategory;
   final String pimageUrl;
-  final int pQuantity;
+  int pQuantity;
   final int? reviewersNum;
   final int? reviewsSum;
   // final pRef = db.collection("products").doc("xxxxx");
