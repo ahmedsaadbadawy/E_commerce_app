@@ -1,7 +1,9 @@
 import 'package:fast_buy/core/widgets/home_view_body.dart';
 import 'package:fast_buy/views/admin/add_product/add_product_view.dart';
+import 'package:fast_buy/views/admin/manager/orders_cubit/orders_cubit.dart';
 import 'package:fast_buy/views/admin/orders/orders_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../user/profile/profile_view.dart';
 
@@ -15,11 +17,14 @@ class AdminHomeView extends StatefulWidget {
 class _AdminHomeViewState extends State<AdminHomeView> {
   int index = 0;
 
-  final screens = const [
-    HomeViewBody(),
-    OrdersView(),
-    AddProductView(),
-    ProfileView(),
+  final screens =  [
+    const HomeViewBody(),
+    BlocProvider(
+      create: (context) => OrdersCubit()..getOrders(),
+      child: const OrdersView(),
+    ),
+    const AddProductView(),
+    const ProfileView(),
   ];
 
   @override

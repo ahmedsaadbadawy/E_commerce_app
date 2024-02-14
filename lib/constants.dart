@@ -21,3 +21,5 @@ const String kUserName = 'name';
 const String kUserPhone = 'phone';
 const String kUserAddress = 'address';
 const String kOrdersCollection = 'orders';
+const String kProductsList = 'productsList';
+const String kUserInfo = 'userInfo';
