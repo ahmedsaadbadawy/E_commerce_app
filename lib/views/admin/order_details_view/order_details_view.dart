@@ -8,20 +8,23 @@ class OrderDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        body: CustomScrollView(slivers: [
-      SliverToBoxAdapter(
-        child: Padding(
-          padding: EdgeInsets.only(left: 24, right: 24, top: 50),
-          child: Column(
-            children: [
-              OrderDetailsViewAppBar(),
-              SizedBox(
-                height: 10,
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 24, right: 24, top: 50),
+              child: Column(
+                children: [
+                  OrderDetailsViewAppBar(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
-    ]));
+    );
   }
 }

@@ -1,13 +1,9 @@
 import 'package:fast_buy/views/admin/manager/orders_cubit/orders_cubit.dart';
-import 'package:fast_buy/views/admin/orders/widgets/order_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
-import '../../../core/utils/app_router.dart';
-import '../../../core/utils/styles.dart';
 import '../../../models/user_order.dart';
+import 'widgets/orders_view_body.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({super.key});
@@ -41,36 +37,7 @@ class _OrdersViewState extends State<OrdersView> {
         return ModalProgressHUD(
           inAsyncCall: isLoading,
           child: Scaffold(
-            body: CustomScrollView(slivers: [
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 24, right: 24, top: 50),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text('Orders', style: Styles.styleSemiBold32),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SliverList.builder(
-                itemCount: ordersList.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRouter.kOrderDetailsView,
-                          extra: ordersList[index]);
-                    },
-                    child: OrderItem(
-                      order: ordersList[index],
-                    ),
-                  );
-                },
-              ),
-            ]),
+            body: OrdersViewBody(ordersList: ordersList),
           ),
         );
       },
