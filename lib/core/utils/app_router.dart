@@ -1,5 +1,7 @@
 import 'package:fast_buy/models/product.dart';
+import 'package:fast_buy/models/user_order.dart';
 import 'package:fast_buy/views/admin/home/admin_home_view.dart';
+import 'package:fast_buy/views/admin/order_details_view/order_details_view.dart';
 import 'package:fast_buy/views/login_and_signup/login_screen.dart';
 import 'package:fast_buy/views/login_and_signup/manager/auth_cubit/auth_cubit.dart';
 import 'package:fast_buy/views/login_and_signup/signup_screen.dart';
@@ -16,6 +18,7 @@ abstract class AppRouter {
   static const kHomeView = '/HomeView';
   static const kAdminHomeView = '/AdminHomeView';
   static const kDetailsView = '/DetailsView';
+  static const kOrderDetailsView = '/OrderDetailsView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -48,6 +51,12 @@ abstract class AppRouter {
         path: kDetailsView,
         builder: (context, state) =>  DetailsView(
           product: state.extra as Product,
+        ),
+      ),
+      GoRoute(
+        path: kOrderDetailsView,
+        builder: (context, state) =>  OrderDetailsView(
+          order: state.extra as UserOrder,
         ),
       ),
     ],

@@ -20,7 +20,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   final products = <Product>[];
 
   getOrders() async {
-    emit(OrdersInitial());
+    emit(OrdersLoading());
     try {
       final QuerySnapshot usersSnapshot =
           await FirebaseFirestore.instance.collection('users').get();
