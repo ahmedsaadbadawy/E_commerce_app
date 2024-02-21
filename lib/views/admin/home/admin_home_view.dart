@@ -17,10 +17,10 @@ class AdminHomeView extends StatefulWidget {
 class _AdminHomeViewState extends State<AdminHomeView> {
   int index = 0;
 
-  final screens =  [
+  final screens = [
     const HomeViewBody(),
     BlocProvider(
-      create: (context) => OrdersCubit()..getOrders(),
+      create: (context) => OrdersCubit(),
       child: const OrdersView(),
     ),
     const AddProductView(),

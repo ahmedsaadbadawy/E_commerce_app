@@ -63,11 +63,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
           if (!usersOrdersList.contains(userOrder)) {
             usersOrdersList.add(
-              UserOrder(
-                  uAddress: userDoc[kUserAddress],
-                  uName: userDoc[kUserName],
-                  uPhone: userDoc[kUserPhone],
-                  producsList: products),
+              userOrder,
             );
           }
         }
