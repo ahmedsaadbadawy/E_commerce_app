@@ -23,3 +23,5 @@ const String kUserAddress = 'address';
 const String kOrdersCollection = 'orders';
 const String kProductsList = 'productsList';
 const String kUserInfo = 'userInfo';
+const String kFavouritesCollection = 'favourites';
+

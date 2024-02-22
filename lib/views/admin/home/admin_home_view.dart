@@ -20,7 +20,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
   final screens = [
     const HomeViewBody(),
     BlocProvider(
-      create: (context) => OrdersCubit()..getOrders(),
+      create: (context) => OrdersCubit(),
       child: const OrdersView(),
     ),
     const AddProductView(),

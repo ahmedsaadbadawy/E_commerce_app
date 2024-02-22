@@ -29,6 +29,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final _phoneController = TextEditingController();
 
+  final _addressController = TextEditingController();
+
   final _formkey = GlobalKey<FormState>();
 
   bool isLoading = false;
@@ -39,6 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
     _passwordController.dispose();
     _nameController.dispose();
     _phoneController.dispose();
+    _addressController.dispose();
     super.dispose();
   }
 
@@ -54,7 +57,7 @@ class _SignupScreenState extends State<SignupScreen> {
             UserInfo(
               uName: _nameController.text,
               uPhone: _phoneController.text,
-              uAddress: null,
+              uAddress: _addressController.text,
             ),
             Auth.getUserId(),
           );
@@ -103,6 +106,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   obscureText: true,
                   controller: _passwordController,
                 ),
+                CustomTextFormFieldWithTitle(
+                  labelText: "Address",
+                  controller: _addressController,
+                ),
                 const SizedBox(
                   height: 25,
                 ),
@@ -111,7 +118,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     _formkey.currentState!.validate();
                     String email = _emailController.text;
                     String password = _passwordController.text;
-                    // String phone = _phoneController.text;
                     String name = _nameController.text;
 
                     if (_formkey.currentState!.validate()) {

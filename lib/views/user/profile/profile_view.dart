@@ -1,3 +1,4 @@
+import 'package:fast_buy/constants.dart';
 import 'package:fast_buy/core/utils/app_router.dart';
 import 'package:fast_buy/core/utils/services/auth.dart';
 import 'package:fast_buy/core/widgets/custom_button.dart';
@@ -14,11 +15,11 @@ class ProfileView extends StatelessWidget {
       body: Center(
         child: CustomButton(
           onTap: () async {
+            GoRouter.of(context).pushReplacement(AppRouter.kSigninScreen);
             Auth.signOut();
+            isAdmin = false;
             SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.clear();
-            GoRouter.of(context).pushReplacement(AppRouter.kSigninScreen);
-            //  playingandtesting3@gmail.com
           },
           buttonName: "Log Out",
           textColor: Colors.white,

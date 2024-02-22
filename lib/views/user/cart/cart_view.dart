@@ -26,7 +26,7 @@ class _CartViewState extends State<CartView> {
         create: (context) => CartCubit(),
         child: BlocConsumer<CartCubit, CartState>(
           listener: (context, state) {
-            // TODO: implement listener
+            // implement listener
           },
           builder: (context, state) {
             return Scaffold(

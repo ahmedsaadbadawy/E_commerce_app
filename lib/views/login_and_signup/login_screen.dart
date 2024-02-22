@@ -35,8 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  String admin = 'admin22';
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
