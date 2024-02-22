@@ -45,4 +45,22 @@ class Store {
       kProductImageUrl: product.pimageUrl,
     });
   }
+
+  void addToFavourites({required Product product}) {
+    firestore
+        .collection(kUsersCollection)
+        .doc(Auth.getUserId())
+        .collection(kFavouritesCollection)
+        .add({
+      kProductName: product.pName,
+      kProductDescription: product.pDescription,
+      kProductCategory: product.pCategory,
+      kProductQuantity: product.pQuantity,
+      kProductPrice: product.pPrice,
+      kProductCreatedAt: DateTime.now(),
+      kProductReviewersNum: product.reviewersNum ?? 0,
+      kProductReviewsSum: product.reviewsSum ?? 0,
+      kProductImageUrl: product.pimageUrl,
+    });
+  }
 }

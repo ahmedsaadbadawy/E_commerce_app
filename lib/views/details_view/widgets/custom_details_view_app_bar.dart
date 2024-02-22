@@ -1,3 +1,5 @@
+import 'package:fast_buy/core/utils/services/store.dart';
+import 'package:fast_buy/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -6,8 +8,9 @@ import '../../../core/utils/styles.dart';
 class CustomDetailsViewAppBar extends StatefulWidget {
   const CustomDetailsViewAppBar({
     super.key,
+    required this.product,
   });
-
+  final Product product;
   @override
   State<CustomDetailsViewAppBar> createState() =>
       _CustomDetailsViewAppBarState();
@@ -38,6 +41,7 @@ class _CustomDetailsViewAppBarState extends State<CustomDetailsViewAppBar> {
             size: 28,
           ),
           onPressed: () {
+            Store().addToFavourites(product: widget.product);
             _isFav = !_isFav;
             setState(() {});
           },

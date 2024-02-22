@@ -20,7 +20,7 @@ class DetailsViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomDetailsViewAppBar(),
+            CustomDetailsViewAppBar(product: product),
             const SizedBox(
               height: 10,
             ),

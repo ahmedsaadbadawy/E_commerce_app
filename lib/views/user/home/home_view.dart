@@ -1,7 +1,9 @@
 import 'package:fast_buy/views/user/cart/cart_view.dart';
 import 'package:fast_buy/views/user/favourites/favourites_view.dart';
+import 'package:fast_buy/views/user/favourites/manager/favourites_cubit/favourites_cubit.dart';
 import 'package:fast_buy/views/user/profile/profile_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../core/widgets/home_view_body.dart';
 
@@ -14,11 +16,14 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int index = 0;
-  final screens = const [
-    HomeViewBody(),
-    FavouritesView(),
-    CartView(),
-    ProfileView(),
+  final screens = [
+    const HomeViewBody(),
+    BlocProvider(
+      create: (context) => FavouritesCubit(),
+      child: const FavouritesView(),
+    ),
+    const CartView(),
+    const ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
