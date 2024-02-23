@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../constants.dart';
 import '../../../../core/utils/styles.dart';
 
 class CustomCustomerInfoTextRow extends StatelessWidget {
@@ -15,8 +16,8 @@ class CustomCustomerInfoTextRow extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 18,
+          style: TextStyle(
+            fontSize: width < 380 ? 14 : 18,
             fontWeight: FontWeight.bold,
           ),
         ),

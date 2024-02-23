@@ -25,3 +25,5 @@ const String kProductsList = 'productsList';
 const String kUserInfo = 'userInfo';
 const String kFavouritesCollection = 'favourites';
 
+ double width = 360;
+ double height = 680;

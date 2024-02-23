@@ -15,7 +15,7 @@ class AppBarSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+           Text(
             'Discover',
             style: Styles.styleSemiBold32,
           ),
@@ -25,7 +25,7 @@ class AppBarSection extends StatelessWidget {
           Row(
             children: [
               SizedBox(
-                width: 273,
+                width: MediaQuery.sizeOf(context).width - 110,
                 height: 53,
                 child: CustomSearchTextField(
                   onPressed: () {},

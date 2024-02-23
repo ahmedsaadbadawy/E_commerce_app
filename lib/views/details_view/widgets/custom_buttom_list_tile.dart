@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../../../core/utils/styles.dart';
 import '../../../models/product.dart';
 
 class CustomButtomListTile extends StatelessWidget {
   const CustomButtomListTile({
     super.key,
-    required this.product, required this.title, this.onPressed, required this.icon,
+    required this.product,
+    required this.title,
+    this.onPressed,
+    required this.icon,
   });
 
   final Product product;
@@ -33,7 +37,8 @@ class CustomButtomListTile extends StatelessWidget {
             ),
             subtitle: Text(
               'EG ${product.pPrice}',
-              style: Styles.styleSemiBold32.copyWith(fontSize: 24),
+              style: Styles.styleSemiBold32
+                  .copyWith(fontSize: width < 380 ? 20 : 24),
             ),
             trailing: TextButton.icon(
               style: ElevatedButton.styleFrom(

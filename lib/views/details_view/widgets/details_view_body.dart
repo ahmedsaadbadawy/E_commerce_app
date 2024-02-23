@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../../../core/utils/styles.dart';
 import '../../../models/product.dart';
 import 'custom_details_view_app_bar.dart';
@@ -39,7 +40,8 @@ class DetailsViewBody extends StatelessWidget {
             ),
             Text(
               product.pName,
-              style: Styles.styleSemiBold32.copyWith(fontSize: 24),
+              style: Styles.styleSemiBold32
+                  .copyWith(fontSize: width < 380 ? 20 : 24),
             ),
             Row(
               children: [

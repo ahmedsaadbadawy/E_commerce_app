@@ -4,6 +4,7 @@ import 'package:fast_buy/views/user/cart/widgets/checkout_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../constants.dart';
 import 'manager/cart_cubit/cart_cubit.dart';
 import 'widgets/cart_list_view_builder.dart';
 import 'widgets/custom_text_row.dart';
@@ -31,9 +32,9 @@ class _CartViewState extends State<CartView> {
           builder: (context, state) {
             return Scaffold(
               body: cartList.isEmpty
-                  ? const Center(
+                  ? Center(
                       child: Text('Your shopping cart is empty',
-                          style: TextStyle(fontSize: 23)),
+                          style: TextStyle(fontSize: width < 380 ? 18 : 23)),
                     )
                   : SingleChildScrollView(
                       child: Column(
@@ -88,7 +89,7 @@ class _CartViewState extends State<CartView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text(
+                                    Text(
                                       'Total',
                                       style: Styles.styleRegular16,
                                     ),

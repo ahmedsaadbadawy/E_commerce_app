@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../constants.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/widgets/custom_image.dart';
 import '../../../../models/product.dart';
@@ -21,7 +22,7 @@ class OrderProductItem extends StatelessWidget {
             FittedBox(
               fit: BoxFit.scaleDown,
               child: CustomImage(
-                product: product,
+                imageUrl: product.pimageUrl,
               ),
             ),
             const SizedBox(
@@ -33,7 +34,7 @@ class OrderProductItem extends StatelessWidget {
                 children: [
                   Text(
                     product.pName,
-                    style: Styles.styleSemiBold32.copyWith(fontSize: 16),
+                    style: Styles.styleSemiBold32.copyWith(fontSize: width < 380 ? 12 : 16),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -49,12 +50,12 @@ class OrderProductItem extends StatelessWidget {
                       ),
                       Text(
                         '${(product.reviewsSum! / product.reviewersNum!).toStringAsFixed(1)}/5',
-                        style: Styles.styleRegular16.copyWith(fontSize: 12),
+                        style: Styles.styleRegular16.copyWith(fontSize: width < 380 ? 8 : 12),
                       ),
                       Text(
                         ' (${product.reviewersNum} reviews)',
                         style: Styles.styleRegular16.copyWith(
-                          fontSize: 12,
+                          fontSize: width < 380 ? 8 : 12,
                           color: Colors.grey[600],
                         ),
                       ),
@@ -65,12 +66,12 @@ class OrderProductItem extends StatelessWidget {
                     children: [
                       Text(
                         'EG ${product.pPrice}',
-                        style: Styles.styleSemiBold32.copyWith(fontSize: 14),
+                        style: Styles.styleSemiBold32.copyWith(fontSize: width < 380 ? 10 : 14),
                       ),
                       const Spacer(),
                       Text(
                         '${product.pQuantity}',
-                        style: Styles.styleSemiBold32.copyWith(fontSize: 14),
+                        style: Styles.styleSemiBold32.copyWith(fontSize: width < 380 ? 10 : 14),
                       ),
                     ],
                   ),

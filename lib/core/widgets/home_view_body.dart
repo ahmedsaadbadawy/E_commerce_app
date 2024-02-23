@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,14 +19,16 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
-
   @override
   void initState() {
     BlocProvider.of<ProductCubit>(context).getProducts(categories[0]);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
+    log(MediaQuery.sizeOf(context).height.toString());//680
+    log(MediaQuery.sizeOf(context).width.toString());//360
     return const CustomScrollView(
       slivers: [
         SliverToBoxAdapter(

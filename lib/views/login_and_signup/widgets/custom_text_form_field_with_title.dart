@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../../../core/utils/styles.dart';
 import 'custom_text_form_field.dart';
 
@@ -29,7 +30,7 @@ class CustomTextFormFieldWithTitle extends StatelessWidget {
         ),
         SizedBox(
           width: 341,
-          height: 80,
+          height: width < 380 ? 60 : 80,
           child: CustomTextFormField(
             obscureText: obscureText,
             onChanged: onChanged,

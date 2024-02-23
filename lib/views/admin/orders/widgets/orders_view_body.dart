@@ -15,14 +15,14 @@ class OrdersViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(slivers: [
-      const SliverToBoxAdapter(
+       SliverToBoxAdapter(
         child: Padding(
-          padding: EdgeInsets.only(left: 24, right: 24, top: 50),
+          padding: const EdgeInsets.only(left: 24, right: 24, top: 50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Orders', style: Styles.styleSemiBold32),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
             ],

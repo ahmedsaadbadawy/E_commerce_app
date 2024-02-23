@@ -1,7 +1,7 @@
 List<String> categories = [
-    'New Arrivals',
-    'Clothes',
-    'Bags',
-    'Soese',
-    'Electronics'
-  ];
+  'New Arrivals',
+  'Clothes',
+  'Bags',
+  'Shoes',
+  'Electronics'
+];

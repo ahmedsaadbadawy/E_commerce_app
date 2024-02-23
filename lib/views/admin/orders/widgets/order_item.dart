@@ -1,5 +1,6 @@
 import 'package:fast_buy/models/user_order.dart';
 import 'package:flutter/material.dart';
+import '../../../../constants.dart';
 import '../../../../core/utils/styles.dart';
 
 class OrderItem extends StatelessWidget {
@@ -27,7 +28,7 @@ class OrderItem extends StatelessWidget {
                         Text(
                           order.uName,
                           style: Styles.styleSemiBold32.copyWith(
-                            fontSize: 20,
+                            fontSize: width < 380 ? 16 : 20,
                             color: Colors.white,
                           ),
                           maxLines: 1,
@@ -37,7 +38,7 @@ class OrderItem extends StatelessWidget {
                         Text(
                           'Items: ${order.producsList.length}',
                           style: Styles.styleSemiBold32.copyWith(
-                            fontSize: 18,
+                            fontSize: width < 380 ? 14 : 18,
                             color: const Color.fromARGB(184, 255, 255, 255),
                           ),
                           maxLines: 1,

@@ -29,7 +29,7 @@ class _CustomDetailsViewAppBarState extends State<CustomDetailsViewAppBar> {
           },
           icon: const Icon(Icons.arrow_back),
         ),
-        const Text('Details', style: Styles.styleSemiBold32),
+         Text('Details', style: Styles.styleSemiBold32),
         IconButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,

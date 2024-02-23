@@ -35,9 +35,11 @@ class SplashView extends StatelessWidget {
           GoRouter.of(context).pushReplacement(
               isLoggedIn ? AppRouter.kAdminHomeView : AppRouter.kSigninScreen);
         } else {
-          GoRouter.of(context)
-              .pushReplacement(isLoggedIn ? AppRouter.kHomeView : AppRouter.kSigninScreen);
+          GoRouter.of(context).pushReplacement(
+              isLoggedIn ? AppRouter.kHomeView : AppRouter.kSigninScreen);
         }
+       height = MediaQuery.sizeOf(context).height;//680
+       width = MediaQuery.sizeOf(context).width;//360
       },
     );
   }

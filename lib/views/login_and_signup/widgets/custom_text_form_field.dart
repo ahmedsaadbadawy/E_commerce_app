@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../../../core/utils/styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -35,8 +36,11 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'Enter your $labelText',
         hintStyle: Styles.styleRegular16,
-        contentPadding:
-            const EdgeInsets.only(left: 22, right: 10, top: 16, bottom: 16),
+        contentPadding: EdgeInsets.only(
+            left: 22,
+            right: 10,
+            top: width < 380 ? 10 : 16,
+            bottom: width < 380 ? 12 : 16),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(4)),
           borderSide: BorderSide(

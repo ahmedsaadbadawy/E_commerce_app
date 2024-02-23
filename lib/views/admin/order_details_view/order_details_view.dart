@@ -1,6 +1,7 @@
 import 'package:fast_buy/models/user_order.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import 'widgets/customer_info_container.dart';
 import 'widgets/order_items_list_view_builder.dart';
 
@@ -29,10 +30,10 @@ class OrderDetailsView extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  const Text(
+                   Text(
                     'Customer Info',
                     style: TextStyle(
-                      fontSize: 26,
+                      fontSize: width < 380 ? 22 : 26,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

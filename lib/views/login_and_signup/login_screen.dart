@@ -56,12 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
         inAsyncCall: isLoading,
         child: Scaffold(
           body: Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 50),
+            padding: EdgeInsets.only(
+                left: 24, right: 24, top: width < 380 ? 40 : 50),
             child: Form(
               key: _formkey,
               child: ListView(
                 children: [
-                  const Text(
+                  Text(
                     'Welcome Back!',
                     style: Styles.styleSemiBold32,
                     textAlign: TextAlign.start,
@@ -78,8 +79,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: "Password",
                     obscureText: true,
                   ),
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: width < 380 ? 20 : 30,
                   ),
                   CustomButton(
                     onTap: () async {
@@ -135,8 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     imageUrl:
                         'https://seeklogo.com/images/F/facebook-new-2023-logo-4221611926-seeklogo.com.png?v=638313429180000000',
                   ),
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: width < 380 ? 30 : 50,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -151,7 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           'Sign Up',
-                          style: Styles.styleSemiBold32.copyWith(fontSize: 16),
+                          style: Styles.styleSemiBold32
+                              .copyWith(fontSize: width < 380 ? 12 : 16),
                         ),
                       ),
                     ],

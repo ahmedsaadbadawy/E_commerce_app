@@ -1,3 +1,4 @@
+import 'package:fast_buy/constants.dart';
 import 'package:fast_buy/core/utils/app_router.dart';
 import 'package:fast_buy/core/utils/styles.dart';
 import 'package:fast_buy/models/product.dart';
@@ -22,19 +23,21 @@ class ProductItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomImage(product: product),
+          CustomImage(imageUrl: product.pimageUrl),
           const SizedBox(
             height: 8,
           ),
           Text(
             product.pName,
-            style: Styles.styleSemiBold32.copyWith(fontSize: 16),
+            style: Styles.styleSemiBold32.copyWith(
+              fontSize: width < 380 ? 12 : 16,
+            ),
             overflow: TextOverflow.ellipsis,
           ),
           Text(
             "EG ${product.pPrice}",
             style: Styles.styleMedium16.copyWith(
-              fontSize: 12.2,
+              fontSize: width < 380 ? 10 : 12.2,
               color: Colors.grey,
             ),
           ),

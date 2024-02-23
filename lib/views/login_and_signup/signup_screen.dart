@@ -76,7 +76,7 @@ class _SignupScreenState extends State<SignupScreen> {
             key: _formkey,
             child: ListView(
               children: [
-                const Text(
+                 Text(
                   'Create an account',
                   style: Styles.styleSemiBold32,
                   textAlign: TextAlign.start,

@@ -25,7 +25,7 @@ class _AddProductViewState extends State<AddProductView> {
             const EdgeInsets.only(left: 24, right: 24, top: 50, bottom: 20),
         child: ListView(
           children: [
-            const Text(
+             Text(
               'Add Product',
               style: Styles.styleSemiBold32,
             ),
