@@ -5,6 +5,7 @@ import 'package:fast_buy/views/user/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../constants.dart';
 import '../../../core/widgets/home_view_body.dart';
 
 class HomeView extends StatefulWidget {
@@ -29,11 +30,12 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        iconSize: width < 380 ? 26 : 32,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined, size: 32),
+            icon: Icon(Icons.home_outlined),
             label: 'Home',
-            activeIcon: Icon(Icons.home, size: 32),
+            activeIcon: Icon(Icons.home),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.heart),
@@ -41,14 +43,14 @@ class _HomeViewState extends State<HomeView> {
             activeIcon: Icon(FontAwesomeIcons.solidHeart),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_outlined, size: 32),
+            icon: Icon(Icons.shopping_bag_outlined),
             label: 'Cart',
-            activeIcon: Icon(Icons.shopping_bag, size: 32),
+            activeIcon: Icon(Icons.shopping_bag),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline, size: 32),
+            icon: Icon(Icons.person_outline),
             label: 'Profile',
-            activeIcon: Icon(Icons.person, size: 32),
+            activeIcon: Icon(Icons.person),
           ),
         ],
         unselectedItemColor: Colors.grey[600],
